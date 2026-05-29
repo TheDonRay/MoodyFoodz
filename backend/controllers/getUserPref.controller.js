@@ -1,4 +1,3 @@
-
 const VALID_DIETARY = ['halal', 'non halal', 'kosher'];
 
 export const userPrefController = async (req, res) => {
@@ -30,7 +29,7 @@ export const userPrefController = async (req, res) => {
         return res.status(400).json({ error: 'distance must be a positive number (in minutes)' });
     }
 
-    if (!VALID_DIETARY.includes(dietary)) {
+    if (!VALID_DIETARY.includes(dietary.toLowerCase())) {
         return res.status(400).json({
             error: `dietary must be one of: ${VALID_DIETARY.join(', ')}`,
         });
@@ -44,8 +43,7 @@ export const userPrefController = async (req, res) => {
         userMood: userMood.trim(),
         userCurrentAddress: userCurrentAddress.trim(),
         distance,
-        dietary,
+        dietary: dietary.toLowerCase(),
         cuisinePreference: cuisinePreference.trim(),
     });
 };
-
