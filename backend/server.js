@@ -1,14 +1,12 @@
-import 'dotenv/config'; 
-import app from './app.js';  
+import "dotenv/config";
+import app from "./app.js";
 
-//import MCP server 
+//import MCP server
 
-// invoke MCP server below 
+// invoke MCP server below
 
-const PORT = process.env.PORT || 9991;  
+const PORT = process.env.PORT || 9991;
 
-
-app.listen(PORT, () => { 
-    console.log(`Server successfully running on: http://localhost:${PORT}`); 
-}); 
-
+app.listen(PORT, () => {
+  console.log(`Server successfully running on: http://localhost:${PORT}`);
+});
