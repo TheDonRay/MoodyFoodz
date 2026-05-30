@@ -1,5 +1,5 @@
-import { motion } from 'framer-motion';
-import RestaurantCard from './RestaurantCard';
+import { motion } from "framer-motion";
+import RestaurantCard from "./RestaurantCard";
 
 export default function ResultsScreen({ data, originCoords, theme, onBack }) {
   const { recommendations = [] } = data;
@@ -20,16 +20,21 @@ export default function ResultsScreen({ data, originCoords, theme, onBack }) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
         >
-          <p className="font-body text-xs uppercase tracking-widest mb-3" style={{ color: theme.primary, opacity: 0.8 }}>
+          <p
+            className="font-body text-xs uppercase tracking-widest mb-3"
+            style={{ color: theme.primary, opacity: 0.8 }}
+          >
             Created by Rayat for Sera
           </p>
           <h2 className="font-display font-extrabold text-4xl text-white leading-tight">
-            Your{' '}
-            <span style={{ color: theme.primary }}>Perfect</span>{' '}
-            Matches
+            Your <span style={{ color: theme.primary }}>Perfect</span> Matches
           </h2>
-          <p className="font-body text-sm mt-3" style={{ color: 'rgba(255,255,255,0.38)' }}>
-            {recommendations.length} restaurant{recommendations.length !== 1 ? 's' : ''} picked just for your vibe
+          <p
+            className="font-body text-sm mt-3"
+            style={{ color: "rgba(255,255,255,0.38)" }}
+          >
+            {recommendations.length} restaurant
+            {recommendations.length !== 1 ? "s" : ""} picked just for your vibe
           </p>
         </motion.div>
 
@@ -57,7 +62,8 @@ export default function ResultsScreen({ data, originCoords, theme, onBack }) {
               No restaurants found nearby.
             </p>
             <p className="font-body text-sm text-white/30 mt-2">
-              Try expanding your travel time or changing your cuisine preference.
+              Try expanding your travel time or changing your cuisine
+              preference.
             </p>
           </motion.div>
         )}
@@ -70,16 +76,16 @@ export default function ResultsScreen({ data, originCoords, theme, onBack }) {
           transition={{ delay: 0.55 }}
           className="mt-10 w-full py-3.5 rounded-xl border font-display font-semibold tracking-wide transition-all duration-200"
           style={{
-            borderColor: 'rgba(255,255,255,0.1)',
-            color: 'rgba(255,255,255,0.45)',
+            borderColor: "rgba(255,255,255,0.1)",
+            color: "rgba(255,255,255,0.45)",
           }}
           onMouseEnter={(e) => {
             e.currentTarget.style.borderColor = theme.primary;
             e.currentTarget.style.color = theme.primary;
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)';
-            e.currentTarget.style.color = 'rgba(255,255,255,0.45)';
+            e.currentTarget.style.borderColor = "rgba(255,255,255,0.1)";
+            e.currentTarget.style.color = "rgba(255,255,255,0.45)";
           }}
           whileTap={{ scale: 0.98 }}
         >

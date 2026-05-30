@@ -1,10 +1,27 @@
-import { motion } from 'framer-motion';
-import { useMemo } from 'react';
+import { motion } from "framer-motion";
+import { useMemo } from "react";
 
 const FOOD_EMOJIS = [
-  '🍜', '🍕', '🌮', '🍣', '🍔', '🥗', '🍱', '🥘',
-  '🍛', '🍝', '🥩', '🌯', '🍤', '🥟', '🫕', '🥙',
-  '🍗', '🥪', '🍲', '🥡',
+  "🍜",
+  "🍕",
+  "🌮",
+  "🍣",
+  "🍔",
+  "🥗",
+  "🍱",
+  "🥘",
+  "🍛",
+  "🍝",
+  "🥩",
+  "🌯",
+  "🍤",
+  "🥟",
+  "🫕",
+  "🥙",
+  "🍗",
+  "🥪",
+  "🍲",
+  "🥡",
 ];
 
 export default function FloatingFood() {
@@ -23,7 +40,7 @@ export default function FloatingFood() {
         opacity: 0.08 + Math.random() * 0.18,
         rotate: Math.random() * 360,
       })),
-    []
+    [],
   );
 
   return (
@@ -44,14 +61,20 @@ export default function FloatingFood() {
           animate={{
             x: [0, item.driftX * 0.6, item.driftX, item.driftX * 0.4, 0],
             y: [0, item.driftY * 0.3, item.driftY * 0.8, item.driftY, 0],
-            rotate: [item.rotate, item.rotate + 25, item.rotate - 10, item.rotate + 15, item.rotate],
+            rotate: [
+              item.rotate,
+              item.rotate + 25,
+              item.rotate - 10,
+              item.rotate + 15,
+              item.rotate,
+            ],
             scale: [1, 1.08, 0.96, 1.04, 1],
           }}
           transition={{
             duration: item.duration,
             delay: item.delay,
             repeat: Infinity,
-            ease: 'easeInOut',
+            ease: "easeInOut",
           }}
         >
           {item.emoji}

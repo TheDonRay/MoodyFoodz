@@ -1,13 +1,13 @@
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
-const LOADING_EMOJIS = ['🍜', '🍕', '🌮', '🍣', '🥗', '🍔', '🥘', '🍱'];
+const LOADING_EMOJIS = ["🍜", "🍕", "🌮", "🍣", "🥗", "🍔", "🥘", "🍱"];
 const LOADING_MESSAGES = [
-  'Geocoding your address...',
-  'Scanning nearby restaurants...',
-  'Claude is reading your vibe...',
-  'Ranking the perfect picks...',
-  'Almost ready...',
+  "Geocoding your address...",
+  "Scanning nearby restaurants...",
+  "Claude is reading your vibe...",
+  "Ranking the perfect picks...",
+  "Almost ready...",
 ];
 
 export default function LoadingScreen({ theme }) {
@@ -41,7 +41,7 @@ export default function LoadingScreen({ theme }) {
           className="absolute inset-0 rounded-full blur-xl"
           style={{ background: theme.blob1 }}
           animate={{ scale: [1, 1.3, 1] }}
-          transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
         />
         <AnimatePresence mode="wait">
           <motion.span

@@ -1,9 +1,9 @@
-import { useMutation } from '@tanstack/react-query';
+import { useMutation } from "@tanstack/react-query";
 
 const fetchRecommendations = async (formData) => {
-  const response = await fetch('/api/v1/userPreferences', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+  const response = await fetch("/api/v1/userPreferences", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       userMood: formData.mood,
       userCurrentAddress: formData.address,

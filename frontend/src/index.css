@@ -24,7 +24,7 @@ html {
 body {
   background-color: #07080f;
   color: #f1f5f9;
-  font-family: 'Figtree', sans-serif;
+  font-family: "Figtree", sans-serif;
   min-height: 100vh;
   overflow-x: hidden;
 }
@@ -42,13 +42,17 @@ body {
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.1);
   color: #f1f5f9;
-  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
 .glass-input:focus {
   outline: none;
   border-color: var(--mood-primary);
-  box-shadow: 0 0 0 2px var(--mood-glow), 0 0 24px var(--mood-glow);
+  box-shadow:
+    0 0 0 2px var(--mood-glow),
+    0 0 24px var(--mood-glow);
 }
 
 .glass-input option {
@@ -62,7 +66,11 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.1);
   color: rgba(255, 255, 255, 0.45);
   cursor: pointer;
-  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.15s ease;
 }
 
 .cuisine-pill:hover {
@@ -78,27 +86,38 @@ body {
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .restaurant-card:hover {
   border-color: var(--mood-primary);
-  box-shadow: 0 0 32px var(--mood-glow), 0 24px 48px rgba(0, 0, 0, 0.35);
+  box-shadow:
+    0 0 32px var(--mood-glow),
+    0 24px 48px rgba(0, 0, 0, 0.35);
 }
 
 /* ── Submit button ── */
 .submit-btn {
   position: relative;
   overflow: hidden;
-  transition: transform 0.2s ease, box-shadow 0.25s ease, opacity 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.25s ease,
+    opacity 0.2s ease;
   box-shadow: 0 4px 24px var(--mood-glow);
 }
 
 .submit-btn::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, transparent 60%);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.12) 0%,
+    transparent 60%
+  );
   pointer-events: none;
 }
 
@@ -118,16 +137,22 @@ body {
 
 /* ── Maps CTA button ── */
 .maps-btn {
-  transition: opacity 0.2s ease, transform 0.15s ease;
+  transition:
+    opacity 0.2s ease,
+    transform 0.15s ease;
   position: relative;
   overflow: hidden;
 }
 
 .maps-btn::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 60%);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    transparent 60%
+  );
   pointer-events: none;
 }
 

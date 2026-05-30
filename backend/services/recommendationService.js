@@ -91,7 +91,10 @@ Return only the JSON array, no extra text.`;
   });
 
   const raw = message.content[0].text;
-  const content = raw.replace(/^```(?:json)?\s*/i, "").replace(/\s*```$/, "").trim();
+  const content = raw
+    .replace(/^```(?:json)?\s*/i, "")
+    .replace(/\s*```$/, "")
+    .trim();
 
   try {
     return JSON.parse(content);

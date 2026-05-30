@@ -1,10 +1,19 @@
-import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { useState } from "react";
+import { motion } from "framer-motion";
 
 const CUISINE_PILLS = [
-  'Italian', 'Japanese', 'Mexican', 'Indian', 'Thai',
-  'American', 'Chinese', 'Mediterranean', 'Korean', 'Lebanese',
-  'Turkish', 'Vietnamese',
+  "Italian",
+  "Japanese",
+  "Mexican",
+  "Indian",
+  "Thai",
+  "American",
+  "Chinese",
+  "Mediterranean",
+  "Korean",
+  "Lebanese",
+  "Turkish",
+  "Vietnamese",
 ];
 
 function SelectWrapper({ children }) {
@@ -13,7 +22,7 @@ function SelectWrapper({ children }) {
       {children}
       <div
         className="absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-xs"
-        style={{ color: 'rgba(255,255,255,0.35)' }}
+        style={{ color: "rgba(255,255,255,0.35)" }}
       >
         ▾
       </div>
@@ -32,7 +41,7 @@ function Field({ label, htmlFor, delay, children }) {
       <label
         htmlFor={htmlFor}
         className="font-body text-xs uppercase tracking-widest"
-        style={{ color: 'rgba(255,255,255,0.4)' }}
+        style={{ color: "rgba(255,255,255,0.4)" }}
       >
         {label}
       </label>
@@ -41,18 +50,24 @@ function Field({ label, htmlFor, delay, children }) {
   );
 }
 
-export default function MoodForm({ onMoodChange, onSubmit, isLoading, error, theme }) {
+export default function MoodForm({
+  onMoodChange,
+  onSubmit,
+  isLoading,
+  error,
+  theme,
+}) {
   const [form, setForm] = useState({
-    mood: '',
-    address: '',
-    dietary: 'halal',
-    cuisine: '',
+    mood: "",
+    address: "",
+    dietary: "halal",
+    cuisine: "",
     distance: 15,
   });
 
   const update = (field, value) => {
     setForm((p) => ({ ...p, [field]: value }));
-    if (field === 'mood') onMoodChange(value);
+    if (field === "mood") onMoodChange(value);
   };
 
   const handleSubmit = (e) => {
@@ -60,8 +75,10 @@ export default function MoodForm({ onMoodChange, onSubmit, isLoading, error, the
     onSubmit(form);
   };
 
-  const inputClass = 'glass-input w-full px-4 py-3 rounded-xl font-body text-sm placeholder-white/20 text-white';
-  const selectClass = 'glass-input w-full px-4 py-3 pr-9 rounded-xl font-body text-sm text-white appearance-none cursor-pointer';
+  const inputClass =
+    "glass-input w-full px-4 py-3 rounded-xl font-body text-sm placeholder-white/20 text-white";
+  const selectClass =
+    "glass-input w-full px-4 py-3 pr-9 rounded-xl font-body text-sm text-white appearance-none cursor-pointer";
 
   return (
     <motion.div
@@ -84,7 +101,10 @@ export default function MoodForm({ onMoodChange, onSubmit, isLoading, error, the
         >
           MoodyFoodz
         </h1>
-        <p className="font-body text-xs mt-2 uppercase tracking-widest" style={{ color: 'rgba(255,255,255,0.32)' }}>
+        <p
+          className="font-body text-xs mt-2 uppercase tracking-widest"
+          style={{ color: "rgba(255,255,255,0.32)" }}
+        >
           Tell us how you feel. We'll find the food.
         </p>
       </motion.div>
@@ -115,7 +135,7 @@ export default function MoodForm({ onMoodChange, onSubmit, isLoading, error, the
               className={inputClass}
               placeholder="happy, adventurous, stressed out..."
               value={form.mood}
-              onChange={(e) => update('mood', e.target.value)}
+              onChange={(e) => update("mood", e.target.value)}
               required
               autoComplete="off"
             />
@@ -129,7 +149,7 @@ export default function MoodForm({ onMoodChange, onSubmit, isLoading, error, the
               className={inputClass}
               placeholder="123 Main St, City, State"
               value={form.address}
-              onChange={(e) => update('address', e.target.value)}
+              onChange={(e) => update("address", e.target.value)}
               required
             />
           </Field>
@@ -142,7 +162,7 @@ export default function MoodForm({ onMoodChange, onSubmit, isLoading, error, the
                   id="dietary"
                   className={selectClass}
                   value={form.dietary}
-                  onChange={(e) => update('dietary', e.target.value)}
+                  onChange={(e) => update("dietary", e.target.value)}
                 >
                   <option value="halal">Halal</option>
                   <option value="non halal">Non-Halal</option>
@@ -157,7 +177,7 @@ export default function MoodForm({ onMoodChange, onSubmit, isLoading, error, the
                   id="distance"
                   className={selectClass}
                   value={form.distance}
-                  onChange={(e) => update('distance', Number(e.target.value))}
+                  onChange={(e) => update("distance", Number(e.target.value))}
                 >
                   <option value={10}>10 min</option>
                   <option value={15}>15 min</option>
@@ -176,7 +196,7 @@ export default function MoodForm({ onMoodChange, onSubmit, isLoading, error, the
               className={inputClass}
               placeholder="Italian, sushi, something spicy..."
               value={form.cuisine}
-              onChange={(e) => update('cuisine', e.target.value)}
+              onChange={(e) => update("cuisine", e.target.value)}
               required
             />
             {/* Quick-pick pills */}
@@ -187,12 +207,12 @@ export default function MoodForm({ onMoodChange, onSubmit, isLoading, error, the
                   <button
                     key={c}
                     type="button"
-                    onClick={() => update('cuisine', c)}
+                    onClick={() => update("cuisine", c)}
                     className="cuisine-pill px-2.5 py-1 rounded-full text-xs font-body"
                     style={
                       selected
                         ? {
-                            backgroundColor: theme.primary + '28',
+                            backgroundColor: theme.primary + "28",
                             borderColor: theme.primary,
                             color: theme.accent,
                           }
@@ -213,12 +233,12 @@ export default function MoodForm({ onMoodChange, onSubmit, isLoading, error, the
               animate={{ opacity: 1, scale: 1 }}
               className="rounded-xl px-4 py-3 text-sm font-body"
               style={{
-                background: 'rgba(248,113,113,0.12)',
-                border: '1px solid rgba(248,113,113,0.3)',
-                color: '#fca5a5',
+                background: "rgba(248,113,113,0.12)",
+                border: "1px solid rgba(248,113,113,0.3)",
+                color: "#fca5a5",
               }}
             >
-              ⚠️ {error.message || 'Something went wrong. Please try again.'}
+              ⚠️ {error.message || "Something went wrong. Please try again."}
             </motion.div>
           )}
 
@@ -227,7 +247,9 @@ export default function MoodForm({ onMoodChange, onSubmit, isLoading, error, the
             type="submit"
             disabled={isLoading}
             className="submit-btn w-full py-4 rounded-xl font-display font-bold text-base text-white tracking-wide mt-1"
-            style={{ background: `linear-gradient(135deg, ${theme.primary}, ${theme.secondary})` }}
+            style={{
+              background: `linear-gradient(135deg, ${theme.primary}, ${theme.secondary})`,
+            }}
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.42 }}
@@ -239,7 +261,7 @@ export default function MoodForm({ onMoodChange, onSubmit, isLoading, error, the
                 Finding your match...
               </span>
             ) : (
-              '✨ Find My Perfect Meal'
+              "✨ Find My Perfect Meal"
             )}
           </motion.button>
         </form>
@@ -250,8 +272,19 @@ export default function MoodForm({ onMoodChange, onSubmit, isLoading, error, the
 
 function Spinner() {
   return (
-    <svg className="animate-spin h-4 w-4 flex-shrink-0" viewBox="0 0 24 24" fill="none">
-      <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" className="opacity-25" />
+    <svg
+      className="animate-spin h-4 w-4 flex-shrink-0"
+      viewBox="0 0 24 24"
+      fill="none"
+    >
+      <circle
+        cx="12"
+        cy="12"
+        r="10"
+        stroke="currentColor"
+        strokeWidth="4"
+        className="opacity-25"
+      />
       <path
         fill="currentColor"
         className="opacity-75"
