@@ -1,0 +1,99 @@
+const moodKeywords = {
+  happy: ['happy', 'joyful', 'excited', 'elated', 'great', 'wonderful', 'amazing', 'fantastic', 'good', 'cheerful', 'ecstatic', 'thrilled', 'pumped', 'euphoric', 'hyped', 'giddy'],
+  sad: ['sad', 'down', 'blue', 'melancholy', 'depressed', 'upset', 'unhappy', 'gloomy', 'sorrowful', 'miserable', 'heartbroken', 'low', 'meh'],
+  tired: ['tired', 'exhausted', 'sleepy', 'fatigued', 'drained', 'worn out', 'weary', 'lazy', 'lethargic', 'drowsy', 'sluggish'],
+  adventurous: ['adventurous', 'bold', 'curious', 'explorative', 'wild', 'daring', 'fearless', 'spontaneous', 'experimental', 'brave', 'adventurous', 'unpredictable'],
+  romantic: ['romantic', 'love', 'date', 'amorous', 'passionate', 'affectionate', 'sweet', 'tender', 'lovey', 'smitten', 'dreamy'],
+  stressed: ['stressed', 'anxious', 'nervous', 'tense', 'overwhelmed', 'worried', 'frantic', 'panicked', 'rushed', 'pressure', 'chaotic'],
+  chill: ['chill', 'relaxed', 'calm', 'peaceful', 'zen', 'mellow', 'content', 'serene', 'tranquil', 'cozy', 'vibing', 'unbothered', 'easy'],
+  hungry: ['hungry', 'starving', 'craving', 'ravenous', 'famished', 'hangry'],
+};
+
+const moodThemes = {
+  happy: {
+    primary: '#f59e0b',
+    secondary: '#fb923c',
+    glow: 'rgba(245, 158, 11, 0.32)',
+    blob1: 'rgba(245, 158, 11, 0.18)',
+    blob2: 'rgba(251, 146, 60, 0.14)',
+    accent: '#fde68a',
+  },
+  sad: {
+    primary: '#60a5fa',
+    secondary: '#3b82f6',
+    glow: 'rgba(96, 165, 250, 0.28)',
+    blob1: 'rgba(96, 165, 250, 0.16)',
+    blob2: 'rgba(59, 130, 246, 0.10)',
+    accent: '#bfdbfe',
+  },
+  tired: {
+    primary: '#94a3b8',
+    secondary: '#64748b',
+    glow: 'rgba(148, 163, 184, 0.22)',
+    blob1: 'rgba(148, 163, 184, 0.12)',
+    blob2: 'rgba(100, 116, 139, 0.09)',
+    accent: '#cbd5e1',
+  },
+  adventurous: {
+    primary: '#a78bfa',
+    secondary: '#7c3aed',
+    glow: 'rgba(167, 139, 250, 0.34)',
+    blob1: 'rgba(167, 139, 250, 0.18)',
+    blob2: 'rgba(124, 58, 237, 0.14)',
+    accent: '#ddd6fe',
+  },
+  romantic: {
+    primary: '#f472b6',
+    secondary: '#ec4899',
+    glow: 'rgba(244, 114, 182, 0.30)',
+    blob1: 'rgba(244, 114, 182, 0.16)',
+    blob2: 'rgba(236, 72, 153, 0.12)',
+    accent: '#fce7f3',
+  },
+  stressed: {
+    primary: '#fbbf24',
+    secondary: '#f59e0b',
+    glow: 'rgba(251, 191, 36, 0.30)',
+    blob1: 'rgba(251, 191, 36, 0.16)',
+    blob2: 'rgba(245, 158, 11, 0.10)',
+    accent: '#fef3c7',
+  },
+  chill: {
+    primary: '#34d399',
+    secondary: '#10b981',
+    glow: 'rgba(52, 211, 153, 0.26)',
+    blob1: 'rgba(52, 211, 153, 0.14)',
+    blob2: 'rgba(16, 185, 129, 0.10)',
+    accent: '#d1fae5',
+  },
+  hungry: {
+    primary: '#f87171',
+    secondary: '#ef4444',
+    glow: 'rgba(248, 113, 113, 0.30)',
+    blob1: 'rgba(248, 113, 113, 0.18)',
+    blob2: 'rgba(239, 68, 68, 0.12)',
+    accent: '#fee2e2',
+  },
+  default: {
+    primary: '#818cf8',
+    secondary: '#6366f1',
+    glow: 'rgba(129, 140, 248, 0.25)',
+    blob1: 'rgba(129, 140, 248, 0.15)',
+    blob2: 'rgba(99, 102, 241, 0.10)',
+    accent: '#e0e7ff',
+  },
+};
+
+export const getMoodTheme = (moodText) => {
+  if (!moodText || moodText.trim().length < 2) return moodThemes.default;
+
+  const text = moodText.toLowerCase();
+
+  for (const [category, keywords] of Object.entries(moodKeywords)) {
+    if (keywords.some((kw) => text.includes(kw))) {
+      return moodThemes[category];
+    }
+  }
+
+  return moodThemes.default;
+};

@@ -90,7 +90,8 @@ Return only the JSON array, no extra text.`;
     messages: [{ role: "user", content: prompt }],
   });
 
-  const content = message.content[0].text;
+  const raw = message.content[0].text;
+  const content = raw.replace(/^```(?:json)?\s*/i, "").replace(/\s*```$/, "").trim();
 
   try {
     return JSON.parse(content);

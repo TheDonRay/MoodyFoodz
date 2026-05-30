@@ -1,0 +1,154 @@
+@tailwind base;
+@tailwind components;
+
+/* ── Mood-reactive CSS variables (updated by JS on mood change) ── */
+:root {
+  --mood-primary: #818cf8;
+  --mood-secondary: #6366f1;
+  --mood-glow: rgba(129, 140, 248, 0.25);
+  --mood-blob1: rgba(129, 140, 248, 0.15);
+  --mood-blob2: rgba(99, 102, 241, 0.12);
+  --mood-accent: #e0e7ff;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #07080f;
+  color: #f1f5f9;
+  font-family: 'Figtree', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── Glassmorphism base ── */
+.glass-card {
+  background: rgba(255, 255, 255, 0.055);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ── Input fields ── */
+.glass-input {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #f1f5f9;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.glass-input:focus {
+  outline: none;
+  border-color: var(--mood-primary);
+  box-shadow: 0 0 0 2px var(--mood-glow), 0 0 24px var(--mood-glow);
+}
+
+.glass-input option {
+  background: #12131f;
+  color: #f1f5f9;
+}
+
+/* ── Cuisine quick-select pills ── */
+.cuisine-pill {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.45);
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+}
+
+.cuisine-pill:hover {
+  border-color: var(--mood-primary);
+  color: var(--mood-accent);
+  background: var(--mood-glow);
+  transform: translateY(-1px);
+}
+
+/* ── Restaurant result cards ── */
+.restaurant-card {
+  background: rgba(255, 255, 255, 0.055);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.restaurant-card:hover {
+  border-color: var(--mood-primary);
+  box-shadow: 0 0 32px var(--mood-glow), 0 24px 48px rgba(0, 0, 0, 0.35);
+}
+
+/* ── Submit button ── */
+.submit-btn {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.25s ease, opacity 0.2s ease;
+  box-shadow: 0 4px 24px var(--mood-glow);
+}
+
+.submit-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.submit-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 36px var(--mood-glow);
+}
+
+.submit-btn:active:not(:disabled) {
+  transform: translateY(0px);
+}
+
+.submit-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* ── Maps CTA button ── */
+.maps-btn {
+  transition: opacity 0.2s ease, transform 0.15s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.maps-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.maps-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+@tailwind utilities;
