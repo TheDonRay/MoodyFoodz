@@ -3,6 +3,7 @@ options:
 
 steps:
   - name: 'gcr.io/cloud-builders/docker'
+    dir: 'backend'
     args: ['build', '-t', 'us-central1-docker.pkg.dev/moodyfoodz/moodyfoodz/backend:$COMMIT_SHA', '.']
 
 images:
