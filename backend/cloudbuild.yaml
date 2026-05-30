@@ -5,12 +5,20 @@ options:
 
 steps:
   - name: 'gcr.io/cloud-builders/docker'
+    id: 'build'
     dir: 'backend'
     env:
       - 'DOCKER_BUILDKIT=1'
     args: ['build', '-t', 'us-central1-docker.pkg.dev/moodyfoodz/moodyfoodz/backend:$COMMIT_SHA', '.']
 
+  - name: 'gcr.io/cloud-builders/docker'
+    id: 'push'
+    waitFor: ['build']
+    args: ['push', 'us-central1-docker.pkg.dev/moodyfoodz/moodyfoodz/backend:$COMMIT_SHA']
+
   - name: 'gcr.io/cloud-builders/gcloud'
+    id: 'deploy'
+    waitFor: ['push']
     args: ['run', 'deploy', 'backend', '--image', 'us-central1-docker.pkg.dev/moodyfoodz/moodyfoodz/backend:$COMMIT_SHA', '--region', 'us-central1', '--platform', 'managed']
 
 images:
