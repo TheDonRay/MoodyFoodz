@@ -1,11 +1,15 @@
 import express from "express";
 import cors from "cors";
+
 const app = express();
 
-const corsOptions = { origin: "https://moodyfoodz.pages.dev" };
+const corsOptions = {
+  origin: "https://moodyfoodz.pages.dev",
+  methods: ["GET", "POST", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+};
 
 app.use(cors(corsOptions));
-app.options('*', cors(corsOptions));
 app.use(express.json());
 
 import userPreferences from "./routes/getUserPref.route.js";
