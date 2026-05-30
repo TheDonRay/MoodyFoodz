@@ -4,7 +4,7 @@ import cors from "cors";
 const app = express();
 
 const corsOptions = {
-  origin: "https://moodyfoodz.pages.dev",
+  origin: "*",
   methods: ["GET", "POST", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
 };
