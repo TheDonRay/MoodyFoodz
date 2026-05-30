@@ -1,7 +1,9 @@
 import express from "express";
+import cors from "cors";
 const app = express();
 
 // middleware
+app.use(cors({ origin: "https://moodyfoodz.pages.dev" }));
 app.use(express.json());
 
 // import any routes here as such
