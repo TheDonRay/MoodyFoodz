@@ -169,12 +169,12 @@ const moodThemes = {
     accent: "#fee2e2",
   },
   default: {
-    primary: "#818cf8",
-    secondary: "#6366f1",
-    glow: "rgba(129, 140, 248, 0.25)",
-    blob1: "rgba(129, 140, 248, 0.15)",
-    blob2: "rgba(99, 102, 241, 0.10)",
-    accent: "#e0e7ff",
+    primary: "#f472b6",
+    secondary: "#ec4899",
+    glow: "rgba(244, 114, 182, 0.28)",
+    blob1: "rgba(244, 114, 182, 0.15)",
+    blob2: "rgba(236, 72, 153, 0.12)",
+    accent: "#fce7f3",
   },
 };
 

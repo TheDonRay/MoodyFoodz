@@ -3,12 +3,12 @@
 
 /* ── Mood-reactive CSS variables (updated by JS on mood change) ── */
 :root {
-  --mood-primary: #818cf8;
-  --mood-secondary: #6366f1;
-  --mood-glow: rgba(129, 140, 248, 0.25);
-  --mood-blob1: rgba(129, 140, 248, 0.15);
-  --mood-blob2: rgba(99, 102, 241, 0.12);
-  --mood-accent: #e0e7ff;
+  --mood-primary: #f472b6;
+  --mood-secondary: #ec4899;
+  --mood-glow: rgba(244, 114, 182, 0.28);
+  --mood-blob1: rgba(244, 114, 182, 0.15);
+  --mood-blob2: rgba(236, 72, 153, 0.12);
+  --mood-accent: #fce7f3;
 }
 
 * {
@@ -22,7 +22,7 @@ html {
 }
 
 body {
-  background-color: #07080f;
+  background-color: #050507;
   color: #f1f5f9;
   font-family: "Figtree", sans-serif;
   min-height: 100vh;
@@ -56,7 +56,7 @@ body {
 }
 
 .glass-input option {
-  background: #12131f;
+  background: #0d0a0e;
   color: #f1f5f9;
 }
 

@@ -47,7 +47,7 @@ export default function RestaurantCard({
       <div className="flex items-start gap-3">
         <div
           className="flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center font-display font-extrabold text-sm"
-          style={{ background: theme.primary, color: "#07080f" }}
+          style={{ background: theme.primary, color: "#050507" }}
         >
           {rank === 0 ? "★" : rank + 1}
         </div>
