@@ -1,7 +1,9 @@
 import { useMutation } from "@tanstack/react-query";
 
+const API_BASE = import.meta.env.VITE_API_BASE_URL || "";
+
 const fetchRecommendations = async (formData) => {
-  const response = await fetch(`${import.meta.env.VITE_API_URL}/api/v1/userPreferences`, {
+  const response = await fetch(`${API_BASE}/api/v1/userPreferences`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
