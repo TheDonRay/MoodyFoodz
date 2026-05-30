@@ -20,4 +20,4 @@ app.get("/", (req, res) => {
   res.json({ Server: "Welcome to MoodyFoodz" });
 });
 
-export default app;
+export default app; 
