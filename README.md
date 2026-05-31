@@ -1,6 +1,6 @@
 # MoodyFoodz 🍜
 
-MoodyFoodz is an AI-powered restaurant recommendation platform that analyzes a user's mood and preferences to suggest the best nearby dining options. Using location services and restaurant data, it provides personalized recommendations, menu previews, ratings, and route guidance based on how far the user is willing to travel.
+MoodyFoodz is an AI-powered restaurant recommendation platform that analyzes a user's mood and preferences to suggest the best nearby dining options. Using location services and restaurant data, it provides personalized recommendations, menu previews, ratings, and route guidance based on how far the user is willing to travel. In addition this project was for a special girl ;)
 
 ## How It Works
 
