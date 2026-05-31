@@ -41,12 +41,14 @@ export default function App() {
         aria-hidden="true"
       >
         <motion.div
-          className="absolute -top-[25%] -left-[15%] w-[700px] h-[700px] rounded-full blur-[180px]"
+          className="absolute -top-[25%] -left-[15%] w-[700px] h-[700px] rounded-full blur-[60px] sm:blur-[120px] lg:blur-[180px]"
+          initial={{ background: theme.blob1 }}
           animate={{ background: theme.blob1 }}
           transition={{ duration: 2.2, ease: "easeInOut" }}
         />
         <motion.div
-          className="absolute -bottom-[15%] -right-[15%] w-[580px] h-[580px] rounded-full blur-[160px]"
+          className="absolute -bottom-[15%] -right-[15%] w-[580px] h-[580px] rounded-full blur-[50px] sm:blur-[100px] lg:blur-[160px]"
+          initial={{ background: theme.blob2 }}
           animate={{ background: theme.blob2 }}
           transition={{ duration: 2.2, ease: "easeInOut", delay: 0.5 }}
         />

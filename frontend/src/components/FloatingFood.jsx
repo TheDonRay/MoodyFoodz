@@ -7,10 +7,12 @@ const FOOD_EMOJIS = [
   "🍰", "🫕", "🥙", "🍤", "🥩", "🫔",
 ];
 
+const isMobile = typeof window !== "undefined" && window.innerWidth < 640;
+
 export default function FloatingFood() {
   const particles = useMemo(
     () =>
-      Array.from({ length: 18 }, (_, i) => ({
+      Array.from({ length: isMobile ? 8 : 18 }, (_, i) => ({
         id: i,
         emoji: FOOD_EMOJIS[i % FOOD_EMOJIS.length],
         x: Math.random() * 100,
