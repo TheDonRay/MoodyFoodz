@@ -21,10 +21,12 @@ function SelectWrapper({ children }) {
     <div className="relative">
       {children}
       <div
-        className="absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-xs"
-        style={{ color: "rgba(255,255,255,0.35)" }}
+        className="absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none"
+        style={{ color: "rgba(255,255,255,0.25)" }}
       >
-        ▾
+        <svg width="9" height="5" viewBox="0 0 9 5" fill="currentColor">
+          <path d="M0 0l4.5 5L9 0z" />
+        </svg>
       </div>
     </div>
   );
@@ -33,15 +35,15 @@ function SelectWrapper({ children }) {
 function Field({ label, htmlFor, delay, children }) {
   return (
     <motion.div
-      className="flex flex-col gap-1.5"
-      initial={{ opacity: 0, x: -16 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ delay, duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+      className="flex flex-col gap-2"
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
     >
       <label
         htmlFor={htmlFor}
-        className="font-body text-xs uppercase tracking-widest"
-        style={{ color: "rgba(255,255,255,0.4)" }}
+        className="font-display text-[10px] font-semibold uppercase tracking-[0.16em]"
+        style={{ color: "rgba(255,255,255,0.32)" }}
       >
         {label}
       </label>
@@ -76,64 +78,53 @@ export default function MoodForm({
   };
 
   const inputClass =
-    "glass-input w-full px-4 py-3 rounded-xl font-body text-sm placeholder-white/20 text-white";
+    "glass-input w-full px-4 py-3 rounded-lg font-body text-sm text-white";
   const selectClass =
-    "glass-input w-full px-4 py-3 pr-9 rounded-xl font-body text-sm text-white appearance-none cursor-pointer";
+    "glass-input w-full px-4 py-3 pr-9 rounded-lg font-body text-sm text-white appearance-none cursor-pointer";
 
   return (
     <motion.div
-      className="w-full max-w-md mx-auto"
-      initial={{ opacity: 0, scale: 0.97, y: 24 }}
-      animate={{ opacity: 1, scale: 1, y: 0 }}
-      exit={{ opacity: 0, scale: 0.97, y: -24 }}
-      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+      className="w-full max-w-[440px] mx-auto"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -20 }}
+      transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
     >
-      {/* Brand header */}
+      {/* Brand */}
       <motion.div
-        className="text-center mb-8"
-        initial={{ opacity: 0, y: -16 }}
+        className="mb-6 sm:mb-8"
+        initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.08 }}
+        transition={{ delay: 0.04 }}
       >
         <h1
-          className="font-display font-bold text-6xl tracking-tight"
-          style={{ color: theme.primary }}
+          className="mood-gradient-text font-display font-extrabold text-4xl sm:text-[3.75rem] tracking-tight leading-none text-center"
         >
-          MoodyFoodz
+          MOODY FOODZ
         </h1>
         <p
-          className="font-body text-xs mt-2 uppercase tracking-widest"
-          style={{ color: "rgba(255,255,255,0.32)" }}
+          className="font-body text-[11px] mt-3 uppercase tracking-[0.22em] text-center"
+          style={{ color: "rgba(255,255,255,0.25)" }}
         >
-          Tell us how you feel. We'll find the food.
+          Mood-based food discovery
         </p>
       </motion.div>
 
-      {/* Glass form card */}
+      {/* Form card */}
       <motion.div
-        className="glass-card rounded-2xl p-7 relative overflow-hidden"
+        className="glass-card rounded-2xl p-6 sm:p-7"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 0.12 }}
+        transition={{ delay: 0.1 }}
       >
-        {/* Decorative inner glow */}
-        <div
-          className="absolute -top-16 -right-16 w-40 h-40 rounded-full blur-[60px] pointer-events-none"
-          style={{ background: theme.blob1 }}
-        />
-        <div
-          className="absolute -bottom-12 -left-12 w-32 h-32 rounded-full blur-[50px] pointer-events-none"
-          style={{ background: theme.blob2 }}
-        />
-
-        <form onSubmit={handleSubmit} className="relative flex flex-col gap-5">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-5">
           {/* Mood */}
-          <Field label="I'm feeling..." htmlFor="mood" delay={0.14}>
+          <Field label="How are you feeling?" htmlFor="mood" delay={0.13}>
             <input
               id="mood"
               type="text"
               className={inputClass}
-              placeholder="happy, adventurous, stressed out..."
+              placeholder="happy, stressed, romantic..."
               value={form.mood}
               onChange={(e) => update("mood", e.target.value)}
               required
@@ -142,7 +133,7 @@ export default function MoodForm({
           </Field>
 
           {/* Address */}
-          <Field label="My address is..." htmlFor="address" delay={0.19}>
+          <Field label="Your location" htmlFor="address" delay={0.18}>
             <input
               id="address"
               type="text"
@@ -154,9 +145,9 @@ export default function MoodForm({
             />
           </Field>
 
-          {/* Dietary + Distance (2-col) */}
-          <div className="grid grid-cols-2 gap-4">
-            <Field label="Diet" htmlFor="dietary" delay={0.24}>
+          {/* Dietary + Distance */}
+          <div className="grid grid-cols-2 gap-2 sm:gap-3">
+            <Field label="Dietary" htmlFor="dietary" delay={0.23}>
               <SelectWrapper>
                 <select
                   id="dietary"
@@ -171,7 +162,7 @@ export default function MoodForm({
               </SelectWrapper>
             </Field>
 
-            <Field label="Travel time" htmlFor="distance" delay={0.29}>
+            <Field label="Travel time" htmlFor="distance" delay={0.28}>
               <SelectWrapper>
                 <select
                   id="distance"
@@ -189,32 +180,32 @@ export default function MoodForm({
           </div>
 
           {/* Cuisine */}
-          <Field label="I'm craving..." htmlFor="cuisine" delay={0.34}>
+          <Field label="Craving" htmlFor="cuisine" delay={0.33}>
             <input
               id="cuisine"
               type="text"
               className={inputClass}
-              placeholder="Italian, sushi, something spicy..."
+              placeholder="Italian, sushi, comfort food..."
               value={form.cuisine}
               onChange={(e) => update("cuisine", e.target.value)}
               required
             />
-            {/* Quick-pick pills */}
-            <div className="flex flex-wrap gap-1.5 mt-2">
+            <div className="flex flex-wrap gap-1.5 mt-1.5">
               {CUISINE_PILLS.map((c) => {
-                const selected = form.cuisine.toLowerCase() === c.toLowerCase();
+                const selected =
+                  form.cuisine.toLowerCase() === c.toLowerCase();
                 return (
                   <button
                     key={c}
                     type="button"
                     onClick={() => update("cuisine", c)}
-                    className="cuisine-pill px-2.5 py-1 rounded-full text-xs font-body"
+                    className="cuisine-pill px-2.5 py-1 rounded font-body text-[11px] font-medium"
                     style={
                       selected
                         ? {
-                            backgroundColor: theme.primary + "28",
+                            background: `${theme.primary}18`,
                             borderColor: theme.primary,
-                            color: theme.accent,
+                            color: theme.primary,
                           }
                         : {}
                     }
@@ -229,16 +220,16 @@ export default function MoodForm({
           {/* Error */}
           {error && (
             <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="rounded-xl px-4 py-3 text-sm font-body"
+              initial={{ opacity: 0, y: -6 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="rounded-lg px-4 py-3 font-body text-sm"
               style={{
-                background: "rgba(248,113,113,0.12)",
-                border: "1px solid rgba(248,113,113,0.3)",
+                background: "rgba(239, 68, 68, 0.08)",
+                border: "1px solid rgba(239, 68, 68, 0.22)",
                 color: "#fca5a5",
               }}
             >
-              ⚠️ {error.message || "Something went wrong. Please try again."}
+              {error.message || "Something went wrong. Please try again."}
             </motion.div>
           )}
 
@@ -246,22 +237,22 @@ export default function MoodForm({
           <motion.button
             type="submit"
             disabled={isLoading}
-            className="submit-btn w-full py-4 rounded-xl font-display font-bold text-base text-white tracking-wide mt-1"
+            className="submit-btn w-full py-4 rounded-xl font-display font-bold text-sm tracking-[0.12em] uppercase text-white mt-1"
             style={{
-              background: `linear-gradient(135deg, ${theme.primary}, ${theme.secondary})`,
+              background: `linear-gradient(135deg, ${theme.primary} 0%, ${theme.secondary} 100%)`,
             }}
-            initial={{ opacity: 0, y: 12 }}
+            initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.42 }}
-            whileTap={!isLoading ? { scale: 0.98 } : {}}
+            transition={{ delay: 0.41 }}
+            whileTap={!isLoading ? { scale: 0.985 } : {}}
           >
             {isLoading ? (
-              <span className="flex items-center justify-center gap-3">
+              <span className="flex items-center justify-center gap-2.5">
                 <Spinner />
                 Finding your match...
               </span>
             ) : (
-              "✨ Find My Perfect Meal"
+              "Find My Perfect Meal"
             )}
           </motion.button>
         </form>
@@ -282,7 +273,7 @@ function Spinner() {
         cy="12"
         r="10"
         stroke="currentColor"
-        strokeWidth="4"
+        strokeWidth="3"
         className="opacity-25"
       />
       <path

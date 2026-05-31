@@ -137,12 +137,12 @@ const moodThemes = {
     accent: "#ddd6fe",
   },
   romantic: {
-    primary: "#f472b6",
-    secondary: "#ec4899",
-    glow: "rgba(244, 114, 182, 0.30)",
-    blob1: "rgba(244, 114, 182, 0.16)",
-    blob2: "rgba(236, 72, 153, 0.12)",
-    accent: "#fce7f3",
+    primary: "#f0145a",
+    secondary: "#ff4d7a",
+    glow: "rgba(240, 20, 90, 0.26)",
+    blob1: "rgba(240, 20, 90, 0.12)",
+    blob2: "rgba(255, 77, 122, 0.09)",
+    accent: "#ff9ab5",
   },
   stressed: {
     primary: "#fbbf24",
@@ -169,12 +169,12 @@ const moodThemes = {
     accent: "#fee2e2",
   },
   default: {
-    primary: "#f472b6",
-    secondary: "#ec4899",
-    glow: "rgba(244, 114, 182, 0.28)",
-    blob1: "rgba(244, 114, 182, 0.15)",
-    blob2: "rgba(236, 72, 153, 0.12)",
-    accent: "#fce7f3",
+    primary: "#f0145a",
+    secondary: "#ff4d7a",
+    glow: "rgba(240, 20, 90, 0.22)",
+    blob1: "rgba(240, 20, 90, 0.10)",
+    blob2: "rgba(255, 77, 122, 0.07)",
+    accent: "#ff9ab5",
   },
 };
 

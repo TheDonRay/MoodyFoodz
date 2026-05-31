@@ -2,43 +2,29 @@ import { motion } from "framer-motion";
 import { useMemo } from "react";
 
 const FOOD_EMOJIS = [
-  "🍜",
-  "🍕",
-  "🌮",
-  "🍣",
-  "🍔",
-  "🥗",
-  "🍱",
-  "🥘",
-  "🍛",
-  "🍝",
-  "🥩",
-  "🌯",
-  "🍤",
-  "🥟",
-  "🫕",
-  "🥙",
-  "🍗",
-  "🥪",
-  "🍲",
-  "🥡",
+  "🍕", "🍣", "🌮", "🍜", "🍔", "🍩", "🧁",
+  "🍱", "🍛", "🥗", "🌯", "🥐", "🍦", "🥟",
+  "🍰", "🫕", "🥙", "🍤", "🥩", "🫔",
 ];
 
 export default function FloatingFood() {
-  const items = useMemo(
+  const particles = useMemo(
     () =>
-      Array.from({ length: 20 }, (_, i) => ({
+      Array.from({ length: 18 }, (_, i) => ({
         id: i,
         emoji: FOOD_EMOJIS[i % FOOD_EMOJIS.length],
         x: Math.random() * 100,
         y: Math.random() * 100,
-        size: 1.1 + Math.random() * 2.2,
-        duration: 18 + Math.random() * 22,
-        delay: -Math.random() * 25,
-        driftX: (Math.random() - 0.5) * 140,
+        size: 22 + Math.random() * 26,
+        duration: 28 + Math.random() * 28,
+        delay: -Math.random() * 40,
+        driftX: (Math.random() - 0.5) * 160,
         driftY: (Math.random() - 0.5) * 140,
-        opacity: 0.08 + Math.random() * 0.18,
+        opacity: 0.07 + Math.random() * 0.12,
         rotate: Math.random() * 360,
+        rotateDelta: (Math.random() - 0.5) * 80,
+        pulseDuration: 3 + Math.random() * 4,
+        pulseDelay: Math.random() * 3,
       })),
     [],
   );
@@ -48,36 +34,43 @@ export default function FloatingFood() {
       className="fixed inset-0 pointer-events-none overflow-hidden"
       aria-hidden="true"
     >
-      {items.map((item) => (
+      {particles.map((p) => (
         <motion.div
-          key={item.id}
+          key={p.id}
           className="absolute select-none"
           style={{
-            left: `${item.x}%`,
-            top: `${item.y}%`,
-            fontSize: `${item.size}rem`,
-            opacity: item.opacity,
+            left: `${p.x}%`,
+            top: `${p.y}%`,
+            fontSize: `${p.size}px`,
+            lineHeight: 1,
+            userSelect: "none",
           }}
           animate={{
-            x: [0, item.driftX * 0.6, item.driftX, item.driftX * 0.4, 0],
-            y: [0, item.driftY * 0.3, item.driftY * 0.8, item.driftY, 0],
+            x: [0, p.driftX * 0.4, p.driftX, p.driftX * 0.6, 0],
+            y: [0, p.driftY * 0.35, p.driftY, p.driftY * 0.5, 0],
             rotate: [
-              item.rotate,
-              item.rotate + 25,
-              item.rotate - 10,
-              item.rotate + 15,
-              item.rotate,
+              p.rotate,
+              p.rotate + p.rotateDelta * 0.5,
+              p.rotate + p.rotateDelta,
+              p.rotate + p.rotateDelta * 0.3,
+              p.rotate,
             ],
-            scale: [1, 1.08, 0.96, 1.04, 1],
+            opacity: [
+              p.opacity,
+              p.opacity * 1.5,
+              p.opacity * 0.7,
+              p.opacity * 1.3,
+              p.opacity,
+            ],
           }}
           transition={{
-            duration: item.duration,
-            delay: item.delay,
+            duration: p.duration,
+            delay: p.delay,
             repeat: Infinity,
             ease: "easeInOut",
           }}
         >
-          {item.emoji}
+          {p.emoji}
         </motion.div>
       ))}
     </div>

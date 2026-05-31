@@ -1,17 +1,17 @@
 @tailwind base;
 @tailwind components;
 
-/* ── Mood-reactive CSS variables (updated by JS on mood change) ── */
+/* ── Mood-reactive CSS variables ── */
 :root {
-  --mood-primary: #f472b6;
-  --mood-secondary: #ec4899;
-  --mood-glow: rgba(244, 114, 182, 0.28);
-  --mood-blob1: rgba(244, 114, 182, 0.15);
-  --mood-blob2: rgba(236, 72, 153, 0.12);
-  --mood-accent: #fce7f3;
+  --mood-primary: #f0145a;
+  --mood-secondary: #ff4d7a;
+  --mood-glow: rgba(240, 20, 90, 0.22);
+  --mood-blob1: rgba(240, 20, 90, 0.10);
+  --mood-blob2: rgba(240, 20, 90, 0.07);
+  --mood-accent: #ff9ab5;
 }
 
-* {
+*, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -22,158 +22,146 @@ html {
 }
 
 body {
-  background-color: #050507;
-  color: #f1f5f9;
-  font-family: "Figtree", sans-serif;
+  background-color: #090909;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 28px 28px;
+  color: #f0f0f0;
+  font-family: "Plus Jakarta Sans", sans-serif;
   min-height: 100vh;
   overflow-x: hidden;
 }
 
-/* ── Glassmorphism base ── */
+/* ── Mood gradient text (uses CSS vars to avoid re-render flicker) ── */
+.mood-gradient-text {
+  background: linear-gradient(135deg, var(--mood-primary) 0%, var(--mood-secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Glass card (dark) ── */
 .glass-card {
-  background: rgba(255, 255, 255, 0.055);
+  background: rgba(255, 255, 255, 0.028);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 /* ── Input fields ── */
 .glass-input {
   background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #f1f5f9;
-  transition:
-    border-color 0.25s ease,
-    box-shadow 0.25s ease;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  color: #f0f0f0;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 
 .glass-input:focus {
   outline: none;
+  background: rgba(255, 255, 255, 0.06);
   border-color: var(--mood-primary);
-  box-shadow:
-    0 0 0 2px var(--mood-glow),
-    0 0 24px var(--mood-glow);
+  box-shadow: 0 0 0 3px var(--mood-glow);
+}
+
+.glass-input::placeholder {
+  color: rgba(255, 255, 255, 0.2);
 }
 
 .glass-input option {
-  background: #0d0a0e;
-  color: #f1f5f9;
+  background: #111111;
+  color: #f0f0f0;
 }
 
-/* ── Cuisine quick-select pills ── */
+/* ── Cuisine pills ── */
 .cuisine-pill {
-  background: rgba(255, 255, 255, 0.04);
+  background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  color: rgba(255, 255, 255, 0.45);
+  color: rgba(255, 255, 255, 0.38);
   cursor: pointer;
-  transition:
-    background 0.2s ease,
-    border-color 0.2s ease,
-    color 0.2s ease,
-    transform 0.15s ease;
+  transition: border-color 0.18s ease, color 0.18s ease, background 0.18s ease;
 }
 
 .cuisine-pill:hover {
   border-color: var(--mood-primary);
-  color: var(--mood-accent);
-  background: var(--mood-glow);
-  transform: translateY(-1px);
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.06);
 }
 
-/* ── Restaurant result cards ── */
+/* ── Restaurant cards ── */
 .restaurant-card {
-  background: rgba(255, 255, 255, 0.055);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  transition:
-    border-color 0.3s ease,
-    box-shadow 0.3s ease;
+  background: #111111;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
 }
 
 .restaurant-card:hover {
   border-color: var(--mood-primary);
   box-shadow:
-    0 0 32px var(--mood-glow),
-    0 24px 48px rgba(0, 0, 0, 0.35);
+    0 0 0 1px var(--mood-primary),
+    0 24px 52px rgba(0, 0, 0, 0.55);
 }
 
 /* ── Submit button ── */
 .submit-btn {
   position: relative;
   overflow: hidden;
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.25s ease,
-    opacity 0.2s ease;
-  box-shadow: 0 4px 24px var(--mood-glow);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+  box-shadow: 0 4px 20px var(--mood-glow);
 }
 
-.submit-btn::before {
+.submit-btn::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.12) 0%,
-    transparent 60%
-  );
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 55%);
   pointer-events: none;
 }
 
 .submit-btn:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 8px 36px var(--mood-glow);
+  box-shadow: 0 10px 36px var(--mood-glow);
 }
 
 .submit-btn:active:not(:disabled) {
-  transform: translateY(0px);
+  transform: translateY(0);
 }
 
 .submit-btn:disabled {
-  opacity: 0.7;
+  opacity: 0.55;
   cursor: not-allowed;
 }
 
-/* ── Maps CTA button ── */
+/* ── Directions button ── */
 .maps-btn {
-  transition:
-    opacity 0.2s ease,
-    transform 0.15s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.maps-btn::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.1) 0%,
-    transparent 60%
-  );
-  pointer-events: none;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .maps-btn:hover {
-  opacity: 0.9;
-  transform: translateY(-1px);
+  background: var(--mood-primary) !important;
+  color: #ffffff !important;
+  border-color: var(--mood-primary) !important;
+  box-shadow: 0 4px 20px var(--mood-glow);
 }
 
 /* ── Scrollbar ── */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 4px;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.12);
-  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* ── Selection ── */
+::selection {
+  background: var(--mood-primary);
+  color: #ffffff;
 }
 
 @tailwind utilities;

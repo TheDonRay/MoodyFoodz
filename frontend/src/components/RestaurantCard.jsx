@@ -1,7 +1,5 @@
 import { motion } from "framer-motion";
 
-const RANK_LABELS = ["", "2nd", "3rd", "4th", "5th"];
-
 export default function RestaurantCard({
   restaurant,
   rank,
@@ -14,108 +12,114 @@ export default function RestaurantCard({
 
   const isOpen = restaurant.openNow;
   const openStatus =
-    isOpen === true
-      ? "Open now"
-      : isOpen === false
-        ? "Closed"
-        : "Hours unknown";
-
+    isOpen === true ? "Open" : isOpen === false ? "Closed" : "Hours unknown";
   const openColor =
     isOpen === true
-      ? { bg: "rgba(52,211,153,0.15)", text: "#34d399", dot: "#34d399" }
+      ? "#34d399"
       : isOpen === false
-        ? { bg: "rgba(248,113,113,0.15)", text: "#f87171", dot: "#f87171" }
-        : {
-            bg: "rgba(255,255,255,0.08)",
-            text: "rgba(255,255,255,0.4)",
-            dot: "rgba(255,255,255,0.3)",
-          };
+        ? "#f87171"
+        : "rgba(255,255,255,0.28)";
+
+  const rankLabel = String(rank + 1).padStart(2, "0");
 
   return (
     <motion.article
-      className="restaurant-card rounded-2xl p-6 flex flex-col gap-4"
-      initial={{ opacity: 0, y: 44 }}
+      className="restaurant-card rounded-2xl p-5 sm:p-6 flex flex-col gap-4"
+      initial={{ opacity: 0, y: 28 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{
-        delay: rank * 0.09,
-        duration: 0.52,
+        delay: rank * 0.08,
+        duration: 0.5,
         ease: [0.22, 1, 0.36, 1],
       }}
-      whileHover={{ y: -4 }}
+      whileHover={{ y: -2 }}
     >
-      {/* Header: rank badge + name */}
-      <div className="flex items-start gap-3">
+      {/* Header: rank + name */}
+      <div className="flex items-start gap-4">
         <div
-          className="flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center font-display font-extrabold text-sm"
-          style={{ background: theme.primary, color: "#050507" }}
+          className="flex-shrink-0 font-display font-extrabold leading-none select-none"
+          style={{
+            fontSize: rank === 0 ? "2.6rem" : "1.4rem",
+            color:
+              rank === 0 ? theme.primary : "rgba(255,255,255,0.12)",
+            lineHeight: 1,
+            letterSpacing: "-0.02em",
+          }}
         >
-          {rank === 0 ? "★" : rank + 1}
+          {rankLabel}
         </div>
-        <div className="flex-1 min-w-0">
-          <h3 className="font-display font-bold text-white text-base leading-snug truncate">
+        <div className="flex-1 min-w-0 pt-0.5">
+          <h3 className="font-display font-bold text-white text-base sm:text-lg leading-tight">
             {restaurant.name}
           </h3>
           <p
-            className="font-body text-xs mt-0.5 leading-relaxed"
-            style={{ color: "rgba(255,255,255,0.38)" }}
+            className="font-body text-xs mt-1 leading-relaxed"
+            style={{ color: "rgba(255,255,255,0.3)" }}
           >
             {restaurant.address}
           </p>
         </div>
       </div>
 
-      {/* Rating + Open status */}
-      <div className="flex items-center gap-2.5 flex-wrap">
+      {/* Divider */}
+      <div
+        style={{ height: "1px", background: "rgba(255,255,255,0.05)" }}
+      />
+
+      {/* Rating + open status */}
+      <div className="flex items-center gap-4 flex-wrap">
         {restaurant.rating && restaurant.rating !== "N/A" && (
-          <div
-            className="flex items-center gap-1.5 px-2.5 py-1 rounded-full"
-            style={{ background: "rgba(255,255,255,0.06)" }}
-          >
-            <span style={{ color: "#fbbf24" }}>★</span>
-            <span className="font-body text-xs font-medium text-white/70">
+          <div className="flex items-center gap-1.5">
+            <span style={{ color: "#fbbf24", fontSize: "11px" }}>★</span>
+            <span
+              className="font-body text-xs font-medium"
+              style={{ color: "rgba(255,255,255,0.55)" }}
+            >
               {restaurant.rating}
             </span>
           </div>
         )}
-        <div
-          className="flex items-center gap-1.5 px-2.5 py-1 rounded-full"
-          style={{ background: openColor.bg }}
-        >
+        <div className="flex items-center gap-1.5">
           <span
             className="w-1.5 h-1.5 rounded-full flex-shrink-0"
-            style={{ background: openColor.dot }}
+            style={{ background: openColor }}
           />
-          <span className="font-body text-xs" style={{ color: openColor.text }}>
+          <span
+            className="font-body text-xs"
+            style={{ color: openColor }}
+          >
             {openStatus}
           </span>
         </div>
       </div>
 
-      {/* Claude's recommendation reason */}
+      {/* Reason */}
       {restaurant.reason && (
         <blockquote
-          className="font-body text-sm leading-relaxed italic pl-3 border-l-2"
+          className="font-body text-sm leading-relaxed italic pl-4 border-l"
           style={{
-            color: "rgba(255,255,255,0.52)",
-            borderColor: theme.primary + "60",
+            color: "rgba(255,255,255,0.42)",
+            borderColor: `${theme.primary}45`,
           }}
         >
-          "{restaurant.reason}"
+          {restaurant.reason}
         </blockquote>
       )}
 
-      {/* Take Me Here CTA */}
+      {/* Directions CTA */}
       <a
         href={mapsUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="maps-btn mt-auto block text-center py-2.5 px-4 rounded-xl font-display font-semibold text-sm tracking-wide text-white"
+        className="maps-btn block text-center py-2.5 px-4 rounded-lg font-display font-semibold text-sm tracking-[0.1em] uppercase border"
         style={{
-          background: `linear-gradient(135deg, ${theme.primary}, ${theme.secondary})`,
+          borderColor: `${theme.primary}45`,
+          color: theme.primary,
+          background: "transparent",
         }}
         aria-label={`Get directions to ${restaurant.name}`}
       >
-        📍 Take Me Here
+        Get Directions →
       </a>
     </motion.article>
   );

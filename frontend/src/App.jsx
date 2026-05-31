@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import FloatingFood from "./components/FloatingFood";
+import EatingCharacter from "./components/EatingCharacter";
 import MoodForm from "./components/MoodForm";
 import ResultsScreen from "./components/ResultsScreen";
 import LoadingScreen from "./components/LoadingScreen";
@@ -12,7 +13,6 @@ export default function App() {
   const theme = getMoodTheme(moodText);
   const mutation = useRecommendations();
 
-  // Push mood-reactive CSS variables to :root on every theme change
   useEffect(() => {
     const root = document.documentElement;
     root.style.setProperty("--mood-primary", theme.primary);
@@ -23,17 +23,10 @@ export default function App() {
     root.style.setProperty("--mood-accent", theme.accent);
   }, [theme]);
 
-  const handleSubmit = (formData) => {
-    mutation.mutate(formData);
-  };
-
-  const handleBack = () => {
-    mutation.reset();
-  };
-
+  const handleSubmit = (formData) => mutation.mutate(formData);
+  const handleBack = () => mutation.reset();
   const originCoords = mutation.data?.location ?? null;
 
-  // Determine which screen to show
   const screen = mutation.data
     ? "results"
     : mutation.isPending
@@ -42,29 +35,30 @@ export default function App() {
 
   return (
     <div className="min-h-screen relative">
-      {/* ── Mood-reactive background blobs ── */}
-      <div className="fixed inset-0 pointer-events-none" aria-hidden="true">
+      {/* Mood-reactive background orbs */}
+      <div
+        className="fixed inset-0 pointer-events-none overflow-hidden"
+        aria-hidden="true"
+      >
         <motion.div
-          className="absolute top-[-10%] left-[10%] w-[500px] h-[500px] rounded-full blur-[130px]"
+          className="absolute -top-[25%] -left-[15%] w-[700px] h-[700px] rounded-full blur-[180px]"
           animate={{ background: theme.blob1 }}
-          transition={{ duration: 1.8, ease: "easeInOut" }}
+          transition={{ duration: 2.2, ease: "easeInOut" }}
         />
         <motion.div
-          className="absolute bottom-[5%] right-[5%] w-[420px] h-[420px] rounded-full blur-[110px]"
+          className="absolute -bottom-[15%] -right-[15%] w-[580px] h-[580px] rounded-full blur-[160px]"
           animate={{ background: theme.blob2 }}
-          transition={{ duration: 1.8, ease: "easeInOut", delay: 0.3 }}
-        />
-        <motion.div
-          className="absolute top-[55%] left-[55%] w-[300px] h-[300px] rounded-full blur-[90px]"
-          animate={{ background: theme.blob1 }}
-          transition={{ duration: 2, ease: "easeInOut", delay: 0.6 }}
+          transition={{ duration: 2.2, ease: "easeInOut", delay: 0.5 }}
         />
       </div>
 
-      {/* ── Floating food emojis ── */}
+      {/* Floating food emojis */}
       <FloatingFood />
 
-      {/* ── Screen router with Framer Motion transitions ── */}
+      {/* Eating character */}
+      <EatingCharacter />
+
+      {/* Screen router */}
       <div className="relative z-10">
         <AnimatePresence mode="wait">
           {screen === "results" && (
@@ -87,7 +81,7 @@ export default function App() {
           {screen === "form" && (
             <motion.div
               key="form"
-              className="flex items-center justify-center min-h-screen py-10 px-5"
+              className="flex items-start sm:items-center justify-center min-h-screen py-6 sm:py-10 px-4 sm:px-6"
             >
               <MoodForm
                 onMoodChange={setMoodText}
